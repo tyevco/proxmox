@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-source <(curl -s https://raw.githubusercontent.com/tteck/Proxmox/main/misc/build.func)
+source <(curl -s https://raw.githubusercontent.com/tyevco/proxmox/main/misc/build.func)
 # Copyright (c) 2021-2024 tteck
 # Author: tteck (tteckster)
 # License: MIT
@@ -55,7 +55,9 @@ header_info
 if [[ ! -d /var ]]; then msg_error "No ${APP} Installation Found!"; exit; fi
 msg_info "Updating $APP LXC"
 apt-get update &>/dev/null
-apt-get -y upgrade &>/dev/null
+apt-get -y install nala
+nala update &>/dev/null
+nala -y upgrade &>/dev/null
 msg_ok "Updated $APP LXC"
 exit
 }
